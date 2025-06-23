@@ -1,8 +1,4 @@
-Here’s a detailed README.md and setup.sh for your repository, based on the code and structure:
 
----
-
-## README.md
 
 # JobFlow Pro: Automated Finance & Tech Job Applications
 

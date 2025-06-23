@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFlow - Automated Finance & Tech Job Applications</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <div class="nav__brand">
+                <h2 class="nav__title">JobFlow Pro</h2>
+            </div>
+            <ul class="nav__menu">
+                <li><button class="nav__link" data-view="dashboard">Dashboard</button></li>
+                <li><button class="nav__link" data-view="profile">Profile</button></li>
+                <li><button class="nav__link" data-view="market">Market</button></li>
+                <li><button class="nav__link" data-view="preferences">Preferences</button></li>
+                <li><button class="nav__link" data-view="templates">Templates</button></li>
+                <li><button class="nav__link" data-view="settings">Auto-Apply</button></li>
+                <li><button class="nav__link" data-view="tracker">Tracker</button></li>
+                <li><button class="nav__link" data-view="analytics">Analytics</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Dashboard View -->
+        <div id="dashboard" class="view view--active">
+            <div class="container">
+                <div class="dashboard__header">
+                    <h1>Welcome back, Adel!</h1>
+                    <p>Your automated finance & tech job application assistant</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stats__grid">
+                        <div class="card stats__card">
+                            <div class="card__body">
+                                <h3>12</h3>
+                                <p>Applications Submitted</p>
+                            </div>
+                        </div>
+                        <div class="card stats__card">
+                            <div class="card__body">
+                                <h3>3</h3>
+                                <p>Interviews Scheduled</p>
+                            </div>
+                        </div>
+                        <div class="card stats__card">
+                            <div class="card__body">
+                                <h3>25%</h3>
+                                <p>Response Rate</p>
+                            </div>
+                        </div>
+                        <div class="card stats__card">
+                            <div class="card__body">
+                                <h3>$175K</h3>
+                                <p>Avg Salary Target</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard__actions">
+                    <button class="btn btn--primary btn--lg" id="startAutoApply">
+                        Start Auto-Applying
+                    </button>
+                    <button class="btn btn--secondary btn--lg" data-view="profile">
+                        Complete Profile Setup
+                    </button>
+                </div>
+
+                <div class="card recent-activity">
+                    <div class="card__body">
+                        <h3>Recent Activity</h3>
+                        <div class="activity__list">
+                            <div class="activity__item">
+                                <span class="status status--success">Applied</span>
+                                <span>Goldman Sachs - Quantitative Analyst</span>
+                                <span class="activity__date">Today</span>
+                            </div>
+                            <div class="activity__item">
+                                <span class="status status--warning">Phone Screen</span>
+                                <span>JPMorgan Chase - Algorithmic Trading Developer</span>
+                                <span class="activity__date">Yesterday</span>
+                            </div>
+                            <div class="activity__item">
+                                <span class="status status--info">Applied</span>
+                                <span>Stripe - Fintech Engineer</span>
+                                <span class="activity__date">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Setup View -->
+        <div id="profile" class="view">
+            <div class="container">
+                <h1>Profile Setup</h1>
+                <div class="profile__content">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Personal Information</h3>
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" value="Adel Alaali" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="adel.alaali@icloud.com" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" value="908-392-2030" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" value="Edgewater, New Jersey, 07020" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Education & Certifications</h3>
+                            <div class="education__item">
+                                <strong>Master of Business Administration (MBA)</strong>
+                                <p>Babson University (#2 MBA program by WSJ) - 2022</p>
+                            </div>
+                            <div class="education__item">
+                                <strong>Bachelor of Business Administration (BBA)</strong>
+                                <p>Rutgers University - Business Administration and Computer Science - 2020</p>
+                            </div>
+                            <div class="certifications">
+                                <h4>Certifications</h4>
+                                <div class="cert__list">
+                                    <span class="status status--success">FINRA Series 7</span>
+                                    <span class="status status--success">FINRA Series 66</span>
+                                    <span class="status status--info">IBM Data Analytics</span>
+                                    <span class="status status--info">AI & Law - Lund University</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Technical Skills</h3>
+                            <div class="skills__grid">
+                                <div class="skill__category">
+                                    <h4>Programming</h4>
+                                    <div class="skill__tags">
+                                        <span class="skill__tag">Python</span>
+                                        <span class="skill__tag">C/C++</span>
+                                        <span class="skill__tag">Rust</span>
+                                    </div>
+                                </div>
+                                <div class="skill__category">
+                                    <h4>Databases</h4>
+                                    <div class="skill__tags">
+                                        <span class="skill__tag">SQL</span>
+                                        <span class="skill__tag">MySQL</span>
+                                        <span class="skill__tag">Postgres</span>
+                                    </div>
+                                </div>
+                                <div class="skill__category">
+                                    <h4>Analytics</h4>
+                                    <div class="skill__tags">
+                                        <span class="skill__tag">Power BI</span>
+                                        <span class="skill__tag">Tableau</span>
+                                        <span class="skill__tag">SAP</span>
+                                    </div>
+                                </div>
+                                <div class="skill__category">
+                                    <h4>Technologies</h4>
+                                    <div class="skill__tags">
+                                        <span class="skill__tag">AWS</span>
+                                        <span class="skill__tag">OpenAI/LLAMA</span>
+                                        <span class="skill__tag">Web3</span>
+                                        <span class="skill__tag">Machine Learning</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Analysis View -->
+        <div id="market" class="view">
+            <div class="container">
+                <h1>Job Market Analysis</h1>
+                <div class="market__content">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Market Trends</h3>
+                            <div class="trends__list">
+                                <div class="trend__item">
+                                    <span class="trend__indicator trend__indicator--up"></span>
+                                    <p>AI integration in financial services driving demand for tech-finance hybrids</p>
+                                </div>
+                                <div class="trend__item">
+                                    <span class="trend__indicator trend__indicator--up"></span>
+                                    <p>Quantitative analysts seeing 40% salary increase (avg $141k-$175k)</p>
+                                </div>
+                                <div class="trend__item">
+                                    <span class="trend__indicator trend__indicator--up"></span>
+                                    <p>Fintech roles showing strong growth with 1,000+ openings in NYC area</p>
+                                </div>
+                                <div class="trend__item">
+                                    <span class="trend__indicator trend__indicator--hot"></span>
+                                    <p>61% increase in FinTech job vacancies year-over-year</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="salary__grid">
+                        <div class="card salary__card">
+                            <div class="card__body">
+                                <h4>Quantitative Analyst</h4>
+                                <div class="salary__range">$150K - $300K</div>
+                                <p>High demand in NYC/NJ</p>
+                            </div>
+                        </div>
+                        <div class="card salary__card">
+                            <div class="card__body">
+                                <h4>Fintech Engineer</h4>
+                                <div class="salary__range">$95K - $180K</div>
+                                <p>Remote opportunities available</p>
+                            </div>
+                        </div>
+                        <div class="card salary__card">
+                            <div class="card__body">
+                                <h4>Algorithmic Trading</h4>
+                                <div class="salary__range">$130K - $250K</div>
+                                <p>Expanding beyond hedge funds</p>
+                            </div>
+                        </div>
+                        <div class="card salary__card">
+                            <div class="card__body">
+                                <h4>WealthTech PM</h4>
+                                <div class="salary__range">$140K - $250K</div>
+                                <p>Digital transformation roles</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Preferences View -->
+        <div id="preferences" class="view">
+            <div class="container">
+                <h1>Job Search Preferences</h1>
+                <div class="preferences__content">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Preferred Job Types</h3>
+                            <div class="checkbox__group">
+                                <label class="checkbox__item">
+                                    <input type="checkbox" checked> Quantitative Analyst
+                                </label>
+                                <label class="checkbox__item">
+                                    <input type="checkbox" checked> Fintech Engineer
+                                </label>
+                                <label class="checkbox__item">
+                                    <input type="checkbox"> Algorithmic Trading Developer
+                                </label>
+                                <label class="checkbox__item">
+                                    <input type="checkbox"> Sales Engineer
+                                </label>
+                                <label class="checkbox__item">
+                                    <input type="checkbox"> WealthTech Product Manager
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Location Preferences</h3>
+                            <div class="form-group">
+                                <label class="form-label">Primary Locations</label>
+                                <select class="form-control" multiple>
+                                    <option selected>New York, NY</option>
+                                    <option selected>New Jersey</option>
+                                    <option>Connecticut</option>
+                                    <option>Remote</option>
+                                    <option>Chicago, IL</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Salary & Company Preferences</h3>
+                            <div class="form-group">
+                                <label class="form-label">Minimum Salary</label>
+                                <input type="number" class="form-control" value="150000" min="50000" step="5000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Company Size</label>
+                                <select class="form-control">
+                                    <option>Any Size</option>
+                                    <option>Startup (1-50)</option>
+                                    <option>Mid-size (51-500)</option>
+                                    <option selected>Large (500+)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume Templates View -->
+        <div id="templates" class="view">
+            <div class="container">
+                <h1>Resume Templates</h1>
+                <div class="templates__selector">
+                    <button class="template__btn template__btn--active" data-template="quant">Quantitative Analyst</button>
+                    <button class="template__btn" data-template="fintech">Fintech Engineer</button>
+                    <button class="template__btn" data-template="trading">Algorithmic Trading</button>
+                    <button class="template__btn" data-template="sales">Sales Engineer</button>
+                    <button class="template__btn" data-template="wealth">WealthTech PM</button>
+                </div>
+
+                <div class="template__content">
+                    <div id="template-quant" class="template__view template__view--active">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Quantitative Analyst Resume Focus</h3>
+                                <ul class="template__focus">
+                                    <li>✓ Lead with MBA from top-ranked Babson University (#2 by WSJ)</li>
+                                    <li>✓ Highlight Python/C++ programming expertise for quantitative modeling</li>
+                                    <li>✓ Feature PayPal SDK development experience demonstrating technical depth</li>
+                                    <li>✓ Showcase Series 7/66 certifications for regulatory compliance knowledge</li>
+                                    <li>✓ Detail trading experience and proven P&L track record</li>
+                                    <li>✓ Emphasize data analytics skills with SQL/Postgres for data manipulation</li>
+                                </ul>
+                                <div class="template__salary">Target Salary: $150,000 - $300,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="template-fintech" class="template__view">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Fintech Engineer Resume Focus</h3>
+                                <ul class="template__focus">
+                                    <li>✓ Lead with PayPal software engineering experience</li>
+                                    <li>✓ Highlight full technical stack (Python, C++, Rust)</li>
+                                    <li>✓ Emphasize financial services background at B. Riley</li>
+                                    <li>✓ Showcase QR code SDK development project</li>
+                                    <li>✓ Detail understanding of financial products and regulations</li>
+                                    <li>✓ Mention Web3 and machine learning experience for innovation</li>
+                                </ul>
+                                <div class="template__salary">Target Salary: $95,000 - $180,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="template-trading" class="template__view">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Algorithmic Trading Resume Focus</h3>
+                                <ul class="template__focus">
+                                    <li>✓ Emphasize trading experience with documented P&L performance</li>
+                                    <li>✓ Highlight C++/Python programming expertise for high-frequency systems</li>
+                                    <li>✓ Feature statistical analysis and machine learning capabilities</li>
+                                    <li>✓ Showcase deep financial markets experience and understanding</li>
+                                    <li>✓ Detail PayPal's high-performance system development experience</li>
+                                    <li>✓ Mention Series 7 for regulatory compliance in trading environments</li>
+                                </ul>
+                                <div class="template__salary">Target Salary: $130,000 - $250,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="template-sales" class="template__view">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Sales Engineer Resume Focus</h3>
+                                <ul class="template__focus">
+                                    <li>✓ Lead with 7+ years of proven sales experience</li>
+                                    <li>✓ Highlight unique technical background (PayPal engineering)</li>
+                                    <li>✓ Emphasize client relationship management success at B. Riley</li>
+                                    <li>✓ Showcase $6-7M capital raising achievement</li>
+                                    <li>✓ Detail ability to bridge technical complexity with business value</li>
+                                    <li>✓ Feature Series licenses for enhanced credibility with financial clients</li>
+                                </ul>
+                                <div class="template__salary">Target Salary: $120,000 - $200,000 + commission</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="template-wealth" class="template__view">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>WealthTech Product Manager Resume Focus</h3>
+                                <ul class="template__focus">
+                                    <li>✓ Emphasize current role as Wealth Management Advisor</li>
+                                    <li>✓ Highlight technical background for digital wealth transformation</li>
+                                    <li>✓ Showcase experience managing UHNW client relationships</li>
+                                    <li>✓ Detail Series 7/66 regulatory expertise for compliance-first product development</li>
+                                    <li>✓ Feature PayPal consumer experience optimization skills</li>
+                                    <li>✓ Emphasize AI/ML knowledge for next-gen robo-advisory platforms</li>
+                                </ul>
+                                <div class="template__salary">Target Salary: $140,000 - $250,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auto-Apply Settings View -->
+        <div id="settings" class="view">
+            <div class="container">
+                <h1>Auto-Apply Settings</h1>
+                <div class="settings__content">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Application Frequency</h3>
+                            <div class="form-group">
+                                <label class="form-label">Daily Application Limit</label>
+                                <input type="number" class="form-control" value="5" min="1" max="20">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Application Schedule</label>
+                                <select class="form-control">
+                                    <option>Business hours only (9 AM - 5 PM)</option>
+                                    <option selected>Throughout the day</option>
+                                    <option>Custom schedule</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Application Filters</h3>
+                            <div class="checkbox__group">
+                                <label class="checkbox__item">
+                                    <input type="checkbox" checked> Skip companies with poor reviews (<3.0 stars)
+                                </label>
+                                <label class="checkbox__item">
+                                    <input type="checkbox" checked> Prioritize Series 7/66 requirements
+                                </label>
+                                <label class="checkbox__item">
+                                    <input type="checkbox"> Only apply to Fortune 500 companies
+                                </label>
+                                <label class="checkbox__item">
+                                    <input type="checkbox" checked> Include remote opportunities
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Email Templates</h3>
+                            <div class="form-group">
+                                <label class="form-label">Follow-up Email Template</label>
+                                <textarea class="form-control" rows="4">Hi [Hiring Manager],
+
+I wanted to follow up on my application for the [Position] role at [Company]. With my MBA from Babson University and Series 7/66 certifications, combined with my software engineering experience at PayPal, I believe I'd be a strong fit for your team.
+
+I'd welcome the opportunity to discuss how my background in both finance and technology can contribute to [Company]'s success.
+
+Best regards,
+Adel Alaali</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Tracker View -->
+        <div id="tracker" class="view">
+            <div class="container">
+                <h1>Application Tracker</h1>
+                <div class="tracker__content">
+                    <div class="tracker__filters">
+                        <select class="form-control">
+                            <option>All Applications</option>
+                            <option>Applied</option>
+                            <option>Phone Screen</option>
+                            <option>Interview</option>
+                            <option>Rejected</option>
+                        </select>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <div class="applications__table">
+                                <div class="table__header">
+                                    <div>Company</div>
+                                    <div>Position</div>
+                                    <div>Status</div>
+                                    <div>Applied</div>
+                                    <div>Salary</div>
+                                    <div>Actions</div>
+                                </div>
+                                <div class="table__row">
+                                    <div class="company__info">
+                                        <strong>Goldman Sachs</strong>
+                                        <span>New York, NY</span>
+                                    </div>
+                                    <div>Quantitative Analyst</div>
+                                    <div><span class="status status--success">Applied</span></div>
+                                    <div>June 20, 2025</div>
+                                    <div>$180K - $220K</div>
+                                    <div>
+                                        <button class="btn btn--sm btn--outline">View</button>
+                                    </div>
+                                </div>
+                                <div class="table__row">
+                                    <div class="company__info">
+                                        <strong>JPMorgan Chase</strong>
+                                        <span>Jersey City, NJ</span>
+                                    </div>
+                                    <div>Algorithmic Trading Developer</div>
+                                    <div><span class="status status--warning">Phone Screen</span></div>
+                                    <div>June 19, 2025</div>
+                                    <div>$160K - $200K</div>
+                                    <div>
+                                        <button class="btn btn--sm btn--outline">View</button>
+                                    </div>
+                                </div>
+                                <div class="table__row">
+                                    <div class="company__info">
+                                        <strong>Stripe</strong>
+                                        <span>Remote</span>
+                                    </div>
+                                    <div>Fintech Engineer</div>
+                                    <div><span class="status status--info">Applied</span></div>
+                                    <div>June 18, 2025</div>
+                                    <div>$140K - $170K</div>
+                                    <div>
+                                        <button class="btn btn--sm btn--outline">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Dashboard View -->
+        <div id="analytics" class="view">
+            <div class="container">
+                <h1>Analytics Dashboard</h1>
+                <div class="analytics__content">
+                    <div class="analytics__grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Application Success Rate</h3>
+                                <canvas id="successChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Applications by Job Type</h3>
+                                <canvas id="jobTypeChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Application Timeline</h3>
+                            <canvas id="timelineChart" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal">
+        <div class="modal__content">
+            <div class="loading__spinner"></div>
+            <h3>Starting Auto-Apply Process...</h3>
+            <p>Analyzing your profile and applying to matching positions</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal__content">
+            <div class="success__icon">✓</div>
+            <h3>Auto-Apply Started Successfully!</h3>
+            <p>We'll apply to 5 positions today based on your preferences</p>
+            <button class="btn btn--primary" onclick="closeModal('successModal')">Continue</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

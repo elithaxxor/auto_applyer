@@ -1,7 +1,7 @@
 # Algorithmic Trading Developer Resume Template
 
 **[Your Name]**  
-, NJ | [Phone] | [Email] | LinkedIn: [Profile URL] | GitHub: [Profile URL]
+Warren, NJ | [Phone] | [Email] | LinkedIn: [Profile URL] | GitHub: [Profile URL]
 
 ---
 

@@ -1,567 +1,674 @@
-// FinTech Career Generator Application
-class FinTechCareerApp {
-    constructor() {
-        this.currentStep = 1;
-        this.selectedRole = null;
-        this.currentApplication = {};
-        this.applications = [];
-        this.templates = {};
-        
-        this.init();
-        this.loadSampleData();
-        this.loadTemplates();
-    }
+// FinTech Career Automation Platform - JavaScript
 
-    init() {
-        this.setupNavigation();
-        this.setupWizard();
-        this.setupRoleSelection();
-        this.renderApplicationsTable();
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the application
+    initializeNavigation();
+    initializeCharts();
+    initializeInteractiveElements();
+    initializeFormHandlers();
+    updateDashboardData();
+});
 
-    loadSampleData() {
-        // Load sample applications
-        this.applications = [
-            {
-                id: 1,
-                company: "Goldman Sachs",
-                position: "Quantitative Analyst - Equity Strategies",
-                role: "Quantitative Analyst",
-                status: "Interview Scheduled",
-                applied: "2025-06-15",
-                priority: "High",
-                notes: "Phone screen went well, technical interview next week",
-                hiringManager: "Sarah Chen"
-            },
-            {
-                id: 2,
-                company: "Two Sigma",
-                position: "Quantitative Researcher",
-                role: "Quantitative Analyst",
-                status: "Applied",
-                applied: "2025-06-20",
-                priority: "High",
-                notes: "Dream job - systematic trading focus",
-                hiringManager: "Unknown"
-            },
-            {
-                id: 3,
-                company: "Betterment",
-                position: "Senior Product Manager - WealthTech",
-                role: "WealthTech Product Manager",
-                status: "Phone Screen",
-                applied: "2025-06-10",
-                priority: "Medium",
-                notes: "Good culture fit, discussing user research background",
-                hiringManager: "Mike Johnson"
-            }
-        ];
-    }
+// Navigation System
+function initializeNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.content-section');
 
-    async loadTemplates() {
-        // Load resume templates
-        try {
-            const quantResumeResponse = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/e009acc69fd92e332ef1e96c93293a52/0517f375-be9f-4efb-9571-c172ca358a41/a7589953.md');
-            const algoResumeResponse = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/e009acc69fd92e332ef1e96c93293a52/5f6a96df-8276-4a2e-85ef-9357cac6cfc5/828f31fc.md');
-            const pmResumeResponse = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/e009acc69fd92e332ef1e96c93293a52/aaadffca-55c6-4752-a252-5b7c64004cea/a7af7329.md');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            const quantCoverResponse = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/e009acc69fd92e332ef1e96c93293a52/731f84fd-4a59-44fd-89b6-48cc3dd9a4b1/3fc1c036.md');
-            const algoCoverResponse = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/e009acc69fd92e332ef1e96c93293a52/de09bdfb-9a10-4e6a-a526-85d6f05135b0/a197e8fa.md');
-            const pmCoverResponse = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/e009acc69fd92e332ef1e96c93293a52/9cf569a3-602f-41ae-b898-fc5223ad3b75/95bafbc8.md');
-
-            this.templates = {
-                quantAnalyst: {
-                    resume: await quantResumeResponse.text(),
-                    coverLetter: await quantCoverResponse.text()
-                },
-                algoTrader: {
-                    resume: await algoResumeResponse.text(),
-                    coverLetter: await algoCoverResponse.text()
-                },
-                productManager: {
-                    resume: await pmResumeResponse.text(),
-                    coverLetter: await pmCoverResponse.text()
+            // Remove active class from all links and sections
+            navLinks.forEach(l => l.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Show corresponding section
+            const targetSection = this.getAttribute('data-section');
+            const section = document.getElementById(targetSection);
+            if (section) {
+                section.classList.add('active');
+                
+                // Initialize charts if analytics section is opened
+                if (targetSection === 'analytics') {
+                    setTimeout(() => {
+                        initializeCharts();
+                    }, 100);
                 }
-            };
-        } catch (error) {
-            console.error('Error loading templates:', error);
-            this.loadFallbackTemplates();
-        }
-    }
+            }
+        });
+    });
+}
 
-    loadFallbackTemplates() {
-        this.templates = {
-            quantAnalyst: {
-                resume: `JOHN SMITH
-Warren, NJ | (555) 123-4567 | john.smith@email.com | linkedin.com/in/johnsmith
-
-PROFESSIONAL SUMMARY
-Quantitative finance professional with 5+ years of experience developing algorithmic trading strategies and managing high-value portfolios. Combines strong technical background in Python/C++ with deep understanding of financial markets and risk management principles.
-
-PROFESSIONAL EXPERIENCE
-
-Wealth Management Advisor | B. Riley Wealth Management | 2021 - Present
-• Manage $25M+ in client assets across 50+ high-net-worth portfolios
-• Developed quantitative investment strategies resulting in 12% outperformance vs. benchmark
-• Implemented automated portfolio rebalancing system reducing manual work by 40%
-
-Senior Software Engineer | PayPal | 2018 - 2021
-• Developed high-performance C++ SDKs processing 1M+ transactions per second
-• Built Python analytics tools improving user engagement by 25%
-• Implemented ML algorithms for fraud detection reducing false positives by 30%
-
-EDUCATION
-MBA, Finance | Babson University | 2020 | GPA: 3.8
-BS, Computer Science | State University | 2015
-
-CERTIFICATIONS & LICENSES
-• Series 7 - General Securities Representative
-• Series 66 - Investment Advisor Representative
-
-TECHNICAL SKILLS
-Programming: Python, C++, R, SQL, MATLAB
-Financial: Bloomberg Terminal, Trading Technologies, Portfolio Management
-Analytics: pandas, NumPy, scikit-learn, TensorFlow
-
-TRADING PERFORMANCE
-• Annual Returns: 15.2%
-• Sharpe Ratio: 1.4
-• Maximum Drawdown: 8.5%
-• Win Rate: 68%`,
-                coverLetter: `[Date]
-
-[Hiring Manager Name]
-[Company Name]
-[Company Address]
-
-Dear Hiring Manager,
-
-I am writing to express my strong interest in the Quantitative Analyst position at [Company Name]. With my unique combination of quantitative finance expertise and software engineering background, I am excited to contribute to your firm's analytical capabilities and trading strategies.
-
-In my current role as Wealth Management Advisor at B. Riley Wealth Management, I manage over $25M in client assets and have developed quantitative investment strategies that consistently outperform benchmarks by 12%. My technical skills in Python, C++, and statistical modeling, combined with my Series 7 and Series 66 certifications, position me well for the challenges of quantitative analysis in institutional finance.
-
-My previous experience as a Senior Software Engineer at PayPal provided me with the technical foundation necessary for building robust financial systems. I developed high-performance applications processing over 1M transactions per second and implemented machine learning algorithms that reduced fraud detection false positives by 30%. This experience with large-scale data processing and algorithm optimization directly translates to the quantitative modeling requirements of your role.
-
-Key qualifications I bring include:
-• Proven track record of developing profitable trading strategies with strong risk-adjusted returns
-• Expertise in Python, C++, R, and MATLAB for quantitative analysis
-• Experience with Bloomberg Terminal and institutional trading platforms
-• Strong academic foundation with MBA in Finance from Babson University
-
-I am particularly drawn to [Company Name] because of your reputation for innovation in quantitative finance and commitment to data-driven investment strategies. I would welcome the opportunity to discuss how my technical skills and market insights can contribute to your team's success.
-
-Thank you for your consideration. I look forward to hearing from you.
-
-Sincerely,
-John Smith`
+// Chart Initialization using Chart.js
+function initializeCharts() {
+    // Platform Chart
+    const platformCtx = document.getElementById('platformChart');
+    if (platformCtx) {
+        new Chart(platformCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['LinkedIn', 'Indeed', 'Glassdoor'],
+                datasets: [{
+                    data: [52, 43, 32],
+                    backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
             },
-            algoTrader: {
-                resume: `JOHN SMITH
-Warren, NJ | (555) 123-4567 | john.smith@email.com | linkedin.com/in/johnsmith
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+    }
 
-PROFESSIONAL SUMMARY
-Experienced software engineer and quantitative finance professional specializing in high-performance trading systems and algorithmic strategy development. Expert in C++ optimization, low-latency systems, and market microstructure with proven track record in financial technology.
-
-PROFESSIONAL EXPERIENCE
-
-Wealth Management Advisor | B. Riley Wealth Management | 2021 - Present
-• Implemented automated portfolio rebalancing system reducing manual work by 40%
-• Developed quantitative investment strategies resulting in 12% outperformance vs. benchmark
-• Built real-time risk monitoring systems for $25M+ in managed assets
-
-Senior Software Engineer | PayPal | 2018 - 2021
-• Developed high-performance C++ SDKs processing 1M+ transactions per second
-• Optimized system latency achieving sub-microsecond execution times
-• Built distributed trading infrastructure handling peak loads of 10K+ TPS
-• Implemented market data processing systems with 99.99% uptime
-
-EDUCATION
-MBA, Finance | Babson University | 2020 | GPA: 3.8
-BS, Computer Science | State University | 2015
-
-CERTIFICATIONS & LICENSES
-• Series 7 - General Securities Representative
-• Series 66 - Investment Advisor Representative
-
-TECHNICAL SKILLS
-Programming: C++, Python, Java, SQL, Shell Scripting
-Trading Systems: FIX Protocol, Market Data Feeds, Order Management Systems
-Infrastructure: Linux, Docker, Kubernetes, Redis, MongoDB
-Performance: Low-latency optimization, Memory management, Multi-threading
-
-TRADING PERFORMANCE
-• System Latency: <100 microseconds average
-• Order Fill Rate: 99.8%
-• System Uptime: 99.99%
-• Risk-Adjusted Returns: Sharpe 1.4`,
-                coverLetter: `[Date]
-
-[Hiring Manager Name]
-[Company Name]
-[Company Address]
-
-Dear Hiring Manager,
-
-I am excited to apply for the Algorithmic Trading Developer position at [Company Name]. With my extensive background in high-performance software development and quantitative finance, I am well-positioned to contribute to your firm's trading technology infrastructure and algorithmic strategy implementation.
-
-My experience as a Senior Software Engineer at PayPal provided me with deep expertise in building ultra-low-latency systems that process over 1M transactions per second. I specialized in C++ optimization techniques, achieving sub-microsecond execution times while maintaining 99.99% system uptime. This technical foundation directly applies to the demanding performance requirements of algorithmic trading systems.
-
-Currently, as a Wealth Management Advisor at B. Riley Wealth Management, I have successfully bridged the gap between technology and finance by developing automated trading and portfolio management systems. My quantitative strategies have consistently outperformed benchmarks by 12%, demonstrating my ability to translate technical capabilities into profitable trading outcomes.
-
-Key technical competencies I offer:
-• Expert-level C++ programming with focus on performance optimization
-• Experience with FIX protocol and market data processing systems
-• Proven ability to build distributed systems handling high-frequency trading loads
-• Deep understanding of market microstructure and algorithmic trading strategies
-
-I am particularly interested in [Company Name] because of your reputation for cutting-edge trading technology and systematic approach to market opportunities. Your focus on quantitative research and technology-driven alpha generation aligns perfectly with my career aspirations and technical expertise.
-
-I would welcome the opportunity to discuss how my unique combination of software engineering excellence and financial market knowledge can contribute to your trading systems and strategy development.
-
-Thank you for your consideration.
-
-Best regards,
-John Smith`
+    // Response Rate Chart
+    const responseCtx = document.getElementById('responseChart');
+    if (responseCtx) {
+        new Chart(responseCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Quantitative Analyst', 'Algo Trading Dev', 'WealthTech PM'],
+                datasets: [{
+                    label: 'Response Rate (%)',
+                    data: [22.5, 19.8, 15.2],
+                    backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C'],
+                    borderRadius: 6,
+                    borderSkipped: false
+                }]
             },
-            productManager: {
-                resume: `JOHN SMITH
-Warren, NJ | (555) 123-4567 | john.smith@email.com | linkedin.com/in/johnsmith
-
-PROFESSIONAL SUMMARY
-Product management professional with expertise in financial technology and wealth management platforms. Combines technical background in software development with deep understanding of client needs and market dynamics in the fintech space.
-
-PROFESSIONAL EXPERIENCE
-
-Wealth Management Advisor | B. Riley Wealth Management | 2021 - Present
-• Manage $25M+ in client assets across 50+ high-net-worth portfolios
-• Led implementation of automated portfolio rebalancing system improving client experience
-• Developed client-facing analytics dashboard increasing engagement by 35%
-• Collaborated with technology team to enhance platform functionality and user experience
-
-Senior Software Engineer | PayPal | 2018 - 2021
-• Built Python analytics tools improving user engagement by 25%
-• Led cross-functional teams in developing user-centric financial products
-• Implemented ML algorithms for fraud detection reducing false positives by 30%
-• Collaborated with product managers on feature prioritization and roadmap planning
-
-EDUCATION
-MBA, Finance | Babson University | 2020 | GPA: 3.8
-BS, Computer Science | State University | 2015
-
-CERTIFICATIONS & LICENSES
-• Series 7 - General Securities Representative
-• Series 66 - Investment Advisor Representative
-
-CORE COMPETENCIES
-Product Strategy: Market analysis, competitive research, product roadmap development
-Technical Skills: Python, SQL, data analytics, API design, system architecture
-Financial Services: Portfolio management, risk assessment, regulatory compliance
-User Experience: User research, journey mapping, A/B testing, conversion optimization
-
-PROJECT HIGHLIGHTS
-• Portfolio Management Platform: Led design and implementation of automated rebalancing system
-• Client Analytics Dashboard: Developed real-time performance tracking with 35% engagement increase
-• Risk Monitoring System: Built comprehensive risk assessment tools for high-net-worth clients`,
-                coverLetter: `[Date]
-
-[Hiring Manager Name]
-[Company Name]
-[Company Address]
-
-Dear Hiring Manager,
-
-I am writing to express my strong interest in the WealthTech Product Manager position at [Company Name]. With my unique combination of financial services experience, technical background, and product development expertise, I am excited to contribute to your mission of democratizing wealth management through innovative technology.
-
-In my current role as Wealth Management Advisor at B. Riley Wealth Management, I manage over $25M in client assets while actively contributing to product development initiatives. I led the implementation of an automated portfolio rebalancing system that significantly improved client experience and operational efficiency. Additionally, I developed a client-facing analytics dashboard that increased user engagement by 35%, demonstrating my ability to translate complex financial concepts into intuitive user experiences.
-
-My technical foundation, developed during my tenure as Senior Software Engineer at PayPal, enables me to work effectively with engineering teams and make informed product decisions. I built analytics tools that improved user engagement by 25% and implemented machine learning solutions that enhanced product functionality. This technical credibility, combined with my MBA in Finance, allows me to bridge the gap between complex financial requirements and practical technology solutions.
-
-Key qualifications I bring to this role:
-• Deep understanding of wealth management workflows and client needs
-• Proven track record of successful fintech product development
-• Strong technical background enabling effective collaboration with engineering teams
-• Experience with regulatory requirements in financial services (Series 7, Series 66)
-
-I am particularly drawn to [Company Name] because of your innovative approach to wealth management technology and commitment to improving financial outcomes for all investors. Your focus on user-centric design and data-driven product development aligns perfectly with my product philosophy and career aspirations.
-
-I would welcome the opportunity to discuss how my unique blend of financial services expertise and product management experience can contribute to your team's continued success.
-
-Thank you for your consideration.
-
-Sincerely,
-John Smith`
-            }
-        };
-    }
-
-    setupNavigation() {
-        const navButtons = document.querySelectorAll('[data-nav]');
-        navButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const targetSection = e.target.getAttribute('data-nav');
-                this.showSection(targetSection);
-                
-                // Update active nav button
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-            });
-        });
-    }
-
-    showSection(sectionId) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.classList.remove('active'));
-        
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
-        }
-    }
-
-    setupWizard() {
-        // Make proceedToStep globally available
-        window.proceedToStep = (step) => this.proceedToStep(step);
-        window.regenerateResume = () => this.generateResume();
-        window.regenerateCoverLetter = () => this.generateCoverLetter();
-        window.downloadDocuments = () => this.downloadDocuments();
-        window.submitApplication = () => this.submitApplication();
-    }
-
-    setupRoleSelection() {
-        const roleCards = document.querySelectorAll('.role-card');
-        roleCards.forEach(card => {
-            card.addEventListener('click', () => {
-                // Remove selection from all cards
-                roleCards.forEach(c => c.classList.remove('selected'));
-                
-                // Add selection to clicked card
-                card.classList.add('selected');
-                
-                // Store selected role
-                this.selectedRole = card.getAttribute('data-role');
-                
-                // Auto-proceed to next step after short delay
-                setTimeout(() => {
-                    this.proceedToStep(2);
-                }, 500);
-            });
-        });
-    }
-
-    proceedToStep(step) {
-        if (step === 3 && !this.validateStep2()) {
-            alert('Please fill in all required fields');
-            return;
-        }
-
-        // Hide current step
-        document.querySelectorAll('.wizard-content').forEach(content => {
-            content.classList.add('hidden');
-        });
-
-        // Update step indicators
-        document.querySelectorAll('.step').forEach((stepEl, index) => {
-            stepEl.classList.remove('active', 'completed');
-            if (index + 1 < step) {
-                stepEl.classList.add('completed');
-            } else if (index + 1 === step) {
-                stepEl.classList.add('active');
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 30,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
             }
         });
-
-        // Show target step
-        const targetStep = document.getElementById(`step-${step}`);
-        if (targetStep) {
-            targetStep.classList.remove('hidden');
-        }
-
-        this.currentStep = step;
-
-        // Generate content for specific steps
-        if (step === 3) {
-            this.collectApplicationData();
-            this.generateResume();
-        } else if (step === 4) {
-            this.generateCoverLetter();
-        } else if (step === 5) {
-            this.updateSummary();
-        }
     }
 
-    validateStep2() {
-        const companyName = document.getElementById('companyName').value.trim();
-        const positionTitle = document.getElementById('positionTitle').value.trim();
-        const jobDescription = document.getElementById('jobDescription').value.trim();
-        
-        return companyName && positionTitle && jobDescription;
-    }
-
-    collectApplicationData() {
-        this.currentApplication = {
-            company: document.getElementById('companyName').value,
-            position: document.getElementById('positionTitle').value,
-            jobDescription: document.getElementById('jobDescription').value,
-            hiringManager: document.getElementById('hiringManager').value || 'Hiring Manager',
-            role: this.selectedRole,
-            appliedDate: new Date().toISOString().split('T')[0]
-        };
-    }
-
-    generateResume() {
-        const resumeContent = document.getElementById('resumeContent');
-        
-        if (!this.selectedRole || !this.templates[this.selectedRole]) {
-            resumeContent.textContent = 'Error: Unable to load resume template';
-            return;
-        }
-
-        let resume = this.templates[this.selectedRole].resume;
-        
-        // Customize resume based on job description
-        const jobDesc = this.currentApplication.jobDescription?.toLowerCase() || '';
-        
-        // Simple keyword matching and highlighting
-        if (jobDesc.includes('python')) {
-            resume = resume.replace('Python', '**Python**');
-        }
-        if (jobDesc.includes('machine learning') || jobDesc.includes('ml')) {
-            resume = resume.replace('ML algorithms', '**Machine Learning algorithms**');
-        }
-        
-        resumeContent.textContent = resume;
-    }
-
-    generateCoverLetter() {
-        const coverLetterContent = document.getElementById('coverLetterContent');
-        
-        if (!this.selectedRole || !this.templates[this.selectedRole]) {
-            coverLetterContent.textContent = 'Error: Unable to load cover letter template';
-            return;
-        }
-
-        let coverLetter = this.templates[this.selectedRole].coverLetter;
-        
-        // Personalize cover letter
-        const today = new Date().toLocaleDateString();
-        coverLetter = coverLetter.replace('[Date]', today);
-        coverLetter = coverLetter.replace(/\[Company Name\]/g, this.currentApplication.company);
-        coverLetter = coverLetter.replace('[Hiring Manager Name]', this.currentApplication.hiringManager);
-        
-        coverLetterContent.textContent = coverLetter;
-    }
-
-    updateSummary() {
-        document.getElementById('summaryCompany').textContent = this.currentApplication.company;
-        document.getElementById('summaryPosition').textContent = this.currentApplication.position;
-        
-        const roleNames = {
-            quantAnalyst: 'Quantitative Analyst',
-            algoTrader: 'Algorithmic Trading Developer',
-            productManager: 'WealthTech Product Manager'
-        };
-        
-        document.getElementById('summaryRole').textContent = roleNames[this.selectedRole] || this.selectedRole;
-    }
-
-    downloadDocuments() {
-        // Simulate document download
-        alert('Documents would be downloaded as PDF files in a real application');
-    }
-
-    submitApplication() {
-        // Add application to tracking
-        const newApplication = {
-            id: this.applications.length + 1,
-            company: this.currentApplication.company,
-            position: this.currentApplication.position,
-            role: this.selectedRole,
-            status: 'Applied',
-            applied: this.currentApplication.appliedDate,
-            priority: 'Medium',
-            notes: 'Application submitted via Career Generator',
-            hiringManager: this.currentApplication.hiringManager
-        };
-
-        this.applications.push(newApplication);
-        this.renderApplicationsTable();
-
-        // Show success message
-        alert('Application submitted successfully!');
-
-        // Reset wizard and go to applications view
-        this.resetWizard();
-        this.showSection('applications');
-        
-        // Update nav
-        document.querySelectorAll('[data-nav]').forEach(btn => btn.classList.remove('active'));
-        document.querySelector('[data-nav="applications"]').classList.add('active');
-    }
-
-    resetWizard() {
-        this.currentStep = 1;
-        this.selectedRole = null;
-        this.currentApplication = {};
-
-        // Reset wizard UI
-        document.querySelectorAll('.wizard-content').forEach(content => {
-            content.classList.add('hidden');
-        });
-        document.getElementById('step-1').classList.remove('hidden');
-
-        document.querySelectorAll('.step').forEach((step, index) => {
-            step.classList.remove('active', 'completed');
-            if (index === 0) {
-                step.classList.add('active');
+    // Trends Chart
+    const trendsCtx = document.getElementById('trendsChart');
+    if (trendsCtx) {
+        new Chart(trendsCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Applications',
+                        data: [25, 32, 28, 35, 42, 38],
+                        borderColor: '#1FB8CD',
+                        backgroundColor: 'rgba(31, 184, 205, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Responses',
+                        data: [4, 6, 5, 7, 8, 6],
+                        borderColor: '#FFC185',
+                        backgroundColor: 'rgba(255, 193, 133, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Interviews',
+                        data: [1, 2, 1, 2, 3, 2],
+                        borderColor: '#B4413C',
+                        backgroundColor: 'rgba(180, 65, 60, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
             }
         });
-
-        // Clear form fields
-        document.getElementById('companyName').value = '';
-        document.getElementById('positionTitle').value = '';
-        document.getElementById('jobDescription').value = '';
-        document.getElementById('hiringManager').value = '';
-
-        // Clear selections
-        document.querySelectorAll('.role-card').forEach(card => {
-            card.classList.remove('selected');
-        });
-    }
-
-    renderApplicationsTable() {
-        const tbody = document.getElementById('applicationsTableBody');
-        tbody.innerHTML = '';
-
-        this.applications.forEach(app => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><strong>${app.company}</strong></td>
-                <td>${app.position}</td>
-                <td><span class="status-badge status-badge--${app.status.toLowerCase().replace(/\s+/g, '-')}">${app.status}</span></td>
-                <td>${new Date(app.applied).toLocaleDateString()}</td>
-                <td><span class="priority-badge priority-badge--${app.priority.toLowerCase()}">${app.priority}</span></td>
-                <td>
-                    <button class="action-btn" onclick="app.viewApplication(${app.id})">View</button>
-                    <button class="action-btn" onclick="app.editApplication(${app.id})">Edit</button>
-                </td>
-            `;
-            tbody.appendChild(row);
-        });
-    }
-
-    viewApplication(id) {
-        const application = this.applications.find(app => app.id === id);
-        if (application) {
-            alert(`Application Details:\n\nCompany: ${application.company}\nPosition: ${application.position}\nStatus: ${application.status}\nNotes: ${application.notes}`);
-        }
-    }
-
-    editApplication(id) {
-        alert('Edit functionality would be implemented in a full application');
     }
 }
 
-// Initialize the application
-const app = new FinTechCareerApp();
+// Interactive Elements
+function initializeInteractiveElements() {
+    // Template Selection
+    const templateOptions = document.querySelectorAll('.template-option');
+    templateOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            templateOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+            updateResumePreview(this.querySelector('h4').textContent);
+        });
+    });
 
-// Make app globally available for event handlers
-window.app = app;
+    // Priority Role Items
+    const roleItems = document.querySelectorAll('.role-item');
+    roleItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const priority = this.classList.contains('priority-high') ? 'Medium' : 'High';
+            const badge = this.querySelector('.priority-badge');
+            const isHigh = priority === 'High';
+            
+            this.classList.toggle('priority-high', isHigh);
+            this.classList.toggle('priority-medium', !isHigh);
+            badge.classList.toggle('high', isHigh);
+            badge.classList.toggle('medium', !isHigh);
+            badge.textContent = priority;
+        });
+    });
+
+    // Automation Controls
+    const startBtn = document.querySelector('.automation-controls .btn--primary');
+    const pauseBtn = document.querySelector('.automation-controls .btn--secondary');
+    const testBtn = document.querySelector('.automation-controls .btn--outline');
+    
+    if (startBtn) {
+        startBtn.addEventListener('click', function() {
+            toggleAutomation(true);
+            showNotification('Automation started successfully', 'success');
+        });
+    }
+    
+    if (pauseBtn) {
+        pauseBtn.addEventListener('click', function() {
+            toggleAutomation(false);
+            showNotification('Automation paused', 'warning');
+        });
+    }
+    
+    if (testBtn) {
+        testBtn.addEventListener('click', function() {
+            runTestAutomation();
+        });
+    }
+
+    // Quick Action Buttons
+    const quickActionBtns = document.querySelectorAll('.quick-actions .btn');
+    quickActionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const action = this.textContent.trim();
+            handleQuickAction(action);
+        });
+    });
+
+    // Application Action Buttons
+    const applicationActionBtns = document.querySelectorAll('.applications-table .btn');
+    applicationActionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const action = this.textContent.trim();
+            const row = this.closest('tr');
+            const company = row.cells[1].textContent;
+            handleApplicationAction(action, company);
+        });
+    });
+}
+
+// Form Handlers
+function initializeFormHandlers() {
+    // Profile form updates
+    const profileInputs = document.querySelectorAll('#profile input, #profile select');
+    profileInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            saveProfileData();
+            showNotification('Profile updated', 'success');
+        });
+    });
+
+    // Automation settings
+    const automationInputs = document.querySelectorAll('#automation input, #automation select');
+    automationInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            updateAutomationSettings();
+        });
+    });
+
+    // Filter controls
+    const filterControls = document.querySelectorAll('.filter-controls select');
+    filterControls.forEach(control => {
+        control.addEventListener('change', function() {
+            filterApplications();
+        });
+    });
+
+    // Skills and certifications
+    const addCertBtn = document.querySelector('.cert-tags .btn');
+    if (addCertBtn) {
+        addCertBtn.addEventListener('click', function() {
+            addCertification();
+        });
+    }
+}
+
+// Update Dashboard Data
+function updateDashboardData() {
+    // Update stat cards with real-time data
+    const stats = {
+        totalApplications: 127,
+        pendingResponses: 23,
+        interviews: 5,
+        successRate: 18.1
+    };
+
+    // Update progress bar
+    const progressFill = document.querySelector('.progress-fill');
+    const weeklyProgress = (15 / 30) * 100; // 15 out of 30 applications
+    if (progressFill) {
+        progressFill.style.width = weeklyProgress + '%';
+    }
+
+    // Update automation status
+    updateAutomationStatus();
+}
+
+// Utility Functions
+function updateResumePreview(templateType) {
+    const resumeContent = document.querySelector('.resume-content');
+    if (!resumeContent) return;
+
+    let previewHTML = '';
+    switch(templateType) {
+        case 'Quantitative Analyst':
+            previewHTML = `
+                <div class="resume-header">
+                    <h2>Your Name</h2>
+                    <p>Quantitative Analyst | Mathematical Finance Professional</p>
+                </div>
+                <div class="resume-section">
+                    <h3>Core Competencies</h3>
+                    <p>Statistical Analysis • Machine Learning • Python • C++ • Risk Modeling</p>
+                </div>
+                <div class="resume-section">
+                    <h3>Experience</h3>
+                    <div class="experience-item">
+                        <h4>Wealth Management Advisor</h4>
+                        <p>B. Riley Wealth Management • Quantitative portfolio analysis</p>
+                    </div>
+                </div>
+            `;
+            break;
+        case 'Algorithmic Trading Developer':
+            previewHTML = `
+                <div class="resume-header">
+                    <h2>Your Name</h2>
+                    <p>Algorithmic Trading Developer | High-Frequency Systems</p>
+                </div>
+                <div class="resume-section">
+                    <h3>Technical Skills</h3>
+                    <p>C++ • Python • Low-latency Systems • Trading Algorithms • Market Data</p>
+                </div>
+                <div class="resume-section">
+                    <h3>Experience</h3>
+                    <div class="experience-item">
+                        <h4>Software Engineer</h4>
+                        <p>PayPal • High-performance systems development</p>
+                    </div>
+                </div>
+            `;
+            break;
+        case 'WealthTech Product Manager':
+            previewHTML = `
+                <div class="resume-header">
+                    <h2>Your Name</h2>
+                    <p>WealthTech Product Manager | Fintech Innovation Leader</p>
+                </div>
+                <div class="resume-section">
+                    <h3>Product Leadership</h3>
+                    <p>Product Strategy • User Experience • Agile Development • Market Analysis</p>
+                </div>
+                <div class="resume-section">
+                    <h3>Experience</h3>
+                    <div class="experience-item">
+                        <h4>Wealth Management Advisor</h4>
+                        <p>B. Riley Wealth Management • Client experience optimization</p>
+                    </div>
+                </div>
+            `;
+            break;
+    }
+    resumeContent.innerHTML = previewHTML;
+}
+
+function toggleAutomation(isActive) {
+    const statusLight = document.querySelector('.status-light');
+    const statusText = document.querySelector('.status-indicator span');
+    
+    if (statusLight && statusText) {
+        if (isActive) {
+            statusLight.classList.add('active');
+            statusText.textContent = 'Active - Running';
+        } else {
+            statusLight.classList.remove('active');
+            statusText.textContent = 'Paused';
+        }
+    }
+}
+
+function updateAutomationStatus() {
+    const statusStats = document.querySelectorAll('.automation-stats .stat-item');
+    if (statusStats.length >= 3) {
+        statusStats[0].innerHTML = '<span>Applications Today</span><span>8 / 15</span>';
+        statusStats[1].innerHTML = '<span>This Week</span><span>34 / 75</span>';
+        statusStats[2].innerHTML = '<span>Success Rate</span><span>87%</span>';
+    }
+}
+
+function runTestAutomation() {
+    showNotification('Running test automation...', 'info');
+    
+    setTimeout(() => {
+        showNotification('Test completed: 3 applications processed successfully', 'success');
+    }, 2000);
+}
+
+function handleQuickAction(action) {
+    switch(action) {
+        case 'Start Auto Apply':
+            toggleAutomation(true);
+            showNotification('Auto-apply started', 'success');
+            break;
+        case 'Review Applications':
+            document.querySelector('[data-section="tracking"]').click();
+            break;
+        case 'Update Profile':
+            document.querySelector('[data-section="profile"]').click();
+            break;
+    }
+}
+
+function handleApplicationAction(action, company) {
+    switch(action) {
+        case 'Follow Up':
+            showNotification(`Follow-up scheduled for ${company}`, 'success');
+            break;
+        case 'Schedule':
+            showNotification(`Interview scheduled with ${company}`, 'success');
+            break;
+        case 'Prepare':
+            showNotification(`Interview prep materials loaded for ${company}`, 'info');
+            break;
+    }
+}
+
+function saveProfileData() {
+    // Simulate saving profile data
+    console.log('Profile data saved');
+}
+
+function updateAutomationSettings() {
+    const dailyLimit = document.querySelector('#automation input[value="15"]').value;
+    const weeklyLimit = document.querySelector('#automation input[value="75"]').value;
+    console.log(`Automation settings updated: Daily: ${dailyLimit}, Weekly: ${weeklyLimit}`);
+}
+
+function filterApplications() {
+    const platformFilter = document.querySelector('.filter-controls select:first-child').value;
+    const statusFilter = document.querySelector('.filter-controls select:last-child').value;
+    
+    const rows = document.querySelectorAll('.applications-table tbody tr');
+    rows.forEach(row => {
+        let showRow = true;
+        
+        if (platformFilter !== 'All Platforms') {
+            const platform = row.cells[2].textContent;
+            if (platform !== platformFilter) showRow = false;
+        }
+        
+        if (statusFilter !== 'All Statuses') {
+            const status = row.cells[3].textContent.trim();
+            if (!status.includes(statusFilter)) showRow = false;
+        }
+        
+        row.style.display = showRow ? '' : 'none';
+    });
+}
+
+function addCertification() {
+    const certTags = document.querySelector('.cert-tags');
+    const newCert = prompt('Enter certification name:');
+    
+    if (newCert && newCert.trim()) {
+        const certTag = document.createElement('span');
+        certTag.className = 'cert-tag';
+        certTag.textContent = newCert.trim();
+        
+        const addButton = certTags.querySelector('.btn');
+        certTags.insertBefore(certTag, addButton);
+        
+        showNotification('Certification added', 'success');
+    }
+}
+
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification--${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span>${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    // Add notification styles if not already present
+    if (!document.querySelector('.notification-styles')) {
+        const styles = document.createElement('style');
+        styles.className = 'notification-styles';
+        styles.textContent = `
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                padding: 12px 16px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                min-width: 300px;
+                animation: slideIn 0.3s ease-out;
+            }
+            
+            .notification--success {
+                background-color: rgba(var(--color-success-rgb), 0.1);
+                border: 1px solid rgba(var(--color-success-rgb), 0.3);
+                color: var(--color-success);
+            }
+            
+            .notification--error {
+                background-color: rgba(var(--color-error-rgb), 0.1);
+                border: 1px solid rgba(var(--color-error-rgb), 0.3);
+                color: var(--color-error);
+            }
+            
+            .notification--warning {
+                background-color: rgba(var(--color-warning-rgb), 0.1);
+                border: 1px solid rgba(var(--color-warning-rgb), 0.3);
+                color: var(--color-warning);
+            }
+            
+            .notification--info {
+                background-color: rgba(var(--color-info-rgb), 0.1);
+                border: 1px solid rgba(var(--color-info-rgb), 0.3);
+                color: var(--color-info);
+            }
+            
+            .notification-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .notification-close {
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: inherit;
+                opacity: 0.7;
+            }
+            
+            .notification-close:hover {
+                opacity: 1;
+            }
+            
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+    
+    // Add to DOM
+    document.body.appendChild(notification);
+    
+    // Add close functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.remove();
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Real-time updates simulation
+function simulateRealTimeUpdates() {
+    setInterval(() => {
+        // Simulate random application updates
+        const statNumbers = document.querySelectorAll('.stat-number');
+        if (statNumbers.length > 0 && Math.random() > 0.95) {
+            const currentApps = parseInt(statNumbers[0].textContent);
+            statNumbers[0].textContent = currentApps + 1;
+            showNotification('New application submitted automatically', 'success');
+        }
+    }, 30000); // Check every 30 seconds
+}
+
+// Initialize real-time updates
+simulateRealTimeUpdates();
+
+// Form validation and enhancement
+function enhanceFormValidation() {
+    const requiredFields = document.querySelectorAll('input[required], select[required]');
+    
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', function() {
+            if (!this.value.trim()) {
+                this.style.borderColor = 'var(--color-error)';
+            } else {
+                this.style.borderColor = 'var(--color-border)';
+            }
+        });
+    });
+}
+
+// Initialize form validation
+enhanceFormValidation();
+
+// Export functionality for reports
+function exportData(format = 'csv') {
+    const data = {
+        applications: [
+            ['Role', 'Company', 'Platform', 'Status', 'Date', 'Match Score'],
+            ['Senior Quantitative Analyst', 'Goldman Sachs', 'LinkedIn', 'Applied', '2025-06-20', '94%'],
+            ['Trading Systems Developer', 'Two Sigma', 'Indeed', 'Phone Screen', '2025-06-18', '91%'],
+            ['Product Manager - WealthTech', 'Charles Schwab', 'Glassdoor', 'Interview', '2025-06-15', '88%']
+        ]
+    };
+    
+    if (format === 'csv') {
+        const csvContent = data.applications.map(row => row.join(',')).join('\n');
+        downloadFile(csvContent, 'applications.csv', 'text/csv');
+    }
+    
+    showNotification(`Data exported as ${format.toUpperCase()}`, 'success');
+}
+
+function downloadFile(content, filename, contentType) {
+    const blob = new Blob([content], { type: contentType });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
+
+// Add export buttons functionality
+document.addEventListener('click', function(e) {
+    if (e.target.textContent.includes('Download') || e.target.textContent.includes('Export')) {
+        const format = e.target.textContent.toLowerCase().includes('pdf') ? 'pdf' : 'csv';
+        exportData(format);
+    }
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey || e.metaKey) {
+        switch(e.key) {
+            case '1':
+                e.preventDefault();
+                document.querySelector('[data-section="dashboard"]').click();
+                break;
+            case '2':
+                e.preventDefault();
+                document.querySelector('[data-section="profile"]').click();
+                break;
+            case '3':
+                e.preventDefault();
+                document.querySelector('[data-section="resume"]').click();
+                break;
+            case 's':
+                e.preventDefault();
+                showNotification('All changes saved', 'success');
+                break;
+        }
+    }
+});

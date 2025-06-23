@@ -3,363 +3,587 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinTech Career Generator</title>
+    <title>FinTech Career Automation Platform</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-brand">
-                <h2>FinTech Career Generator</h2>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>FinTech Career Hub</h2>
             </div>
-            <div class="navbar-menu">
-                <button class="btn btn--secondary" data-nav="dashboard">Dashboard</button>
-                <button class="btn btn--secondary" data-nav="profile">Profile</button>
-                <button class="btn btn--secondary" data-nav="new-application">New Application</button>
-                <button class="btn btn--secondary" data-nav="applications">Applications</button>
-                <button class="btn btn--secondary" data-nav="analytics">Analytics</button>
-            </div>
-        </div>
-    </nav>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#profile" class="nav-link" data-section="profile">Profile Management</a></li>
+                <li><a href="#resume" class="nav-link" data-section="resume">Resume Builder</a></li>
+                <li><a href="#targeting" class="nav-link" data-section="targeting">Job Targeting</a></li>
+                <li><a href="#automation" class="nav-link" data-section="automation">Automation Engine</a></li>
+                <li><a href="#tracking" class="nav-link" data-section="tracking">Application Tracking</a></li>
+                <li><a href="#analytics" class="nav-link" data-section="analytics">Analytics & Reports</a></li>
+                <li><a href="#extension" class="nav-link" data-section="extension">Chrome Extension</a></li>
+            </ul>
+        </nav>
 
-    <main class="main-content">
-        <!-- Dashboard Section -->
-        <section id="dashboard" class="section active">
-            <div class="container">
-                <h1>Application Dashboard</h1>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard Hub</h1>
+                    <p>Central command center for your job application activities</p>
+                </div>
                 
-                <div class="stats-grid">
+                <div class="dashboard-grid">
                     <div class="stat-card">
-                        <h3>Total Applications</h3>
-                        <div class="stat-number">15</div>
-                        <div class="stat-change">+3 this week</div>
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <h3>Total Applications</h3>
+                            <div class="stat-number">127</div>
+                            <div class="stat-change positive">+8 this week</div>
+                        </div>
                     </div>
+                    
                     <div class="stat-card">
-                        <h3>Response Rate</h3>
-                        <div class="stat-number">20%</div>
-                        <div class="stat-change status--success">+5% vs last month</div>
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-content">
+                            <h3>Pending Responses</h3>
+                            <div class="stat-number">23</div>
+                            <div class="stat-change neutral">18% response rate</div>
+                        </div>
                     </div>
+                    
                     <div class="stat-card">
-                        <h3>Interview Rate</h3>
-                        <div class="stat-number">60%</div>
-                        <div class="stat-change status--success">Strong performance</div>
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <h3>Interviews Scheduled</h3>
+                            <div class="stat-number">5</div>
+                            <div class="stat-change positive">+2 this week</div>
+                        </div>
                     </div>
+                    
                     <div class="stat-card">
-                        <h3>Offer Rate</h3>
-                        <div class="stat-number">25%</div>
-                        <div class="stat-change">1 pending</div>
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3>Success Rate</h3>
+                            <div class="stat-number">18.1%</div>
+                            <div class="stat-change positive">Above average</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="recent-activity">
-                    <h2>Recent Activity</h2>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="activity-icon status--success">✓</div>
-                            <div class="activity-content">
-                                <div class="activity-title">Interview scheduled with Goldman Sachs</div>
-                                <div class="activity-time">2 days ago</div>
+                <div class="dashboard-row">
+                    <div class="card progress-card">
+                        <div class="card__body">
+                            <h3>Weekly Progress</h3>
+                            <div class="progress-info">
+                                <span>15 / 30 applications</span>
+                                <span>50%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%"></div>
                             </div>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-icon status--info">📝</div>
-                            <div class="activity-content">
-                                <div class="activity-title">Applied to Two Sigma - Quantitative Researcher</div>
-                                <div class="activity-time">3 days ago</div>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon status--warning">📞</div>
-                            <div class="activity-content">
-                                <div class="activity-title">Phone screen completed at Betterment</div>
-                                <div class="activity-time">1 week ago</div>
+                    </div>
+                    
+                    <div class="card quick-actions">
+                        <div class="card__body">
+                            <h3>Quick Actions</h3>
+                            <div class="action-buttons">
+                                <button class="btn btn--primary">Start Auto Apply</button>
+                                <button class="btn btn--secondary">Review Applications</button>
+                                <button class="btn btn--outline">Update Profile</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Profile Section -->
-        <section id="profile" class="section">
-            <div class="container">
-                <h1>Profile Management</h1>
+                <div class="card recent-activity">
+                    <div class="card__body">
+                        <h3>Recent Applications</h3>
+                        <div class="application-list">
+                            <div class="application-item">
+                                <div class="application-info">
+                                    <h4>Senior Quantitative Analyst</h4>
+                                    <p>Goldman Sachs • Applied via LinkedIn</p>
+                                </div>
+                                <div class="application-status">
+                                    <span class="status status--info">Applied</span>
+                                    <span class="match-score">94% match</span>
+                                </div>
+                            </div>
+                            <div class="application-item">
+                                <div class="application-info">
+                                    <h4>Trading Systems Developer</h4>
+                                    <p>Two Sigma • Applied via Indeed</p>
+                                </div>
+                                <div class="application-status">
+                                    <span class="status status--warning">Phone Screen</span>
+                                    <span class="match-score">91% match</span>
+                                </div>
+                            </div>
+                            <div class="application-item">
+                                <div class="application-info">
+                                    <h4>Product Manager - WealthTech</h4>
+                                    <p>Charles Schwab • Applied via Glassdoor</p>
+                                </div>
+                                <div class="application-status">
+                                    <span class="status status--success">Interview</span>
+                                    <span class="match-score">88% match</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Management Section -->
+            <section id="profile" class="content-section">
+                <div class="section-header">
+                    <h1>Profile Management</h1>
+                    <p>Manage your professional information and credentials</p>
+                </div>
                 
-                <div class="profile-form">
-                    <div class="card">
-                        <div class="card__header">
+                <div class="profile-grid">
+                    <div class="card profile-basic">
+                        <div class="card__body">
                             <h3>Personal Information</h3>
-                        </div>
-                        <div class="card__body">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" value="John Smith">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Location</label>
-                                    <input type="text" class="form-control" id="location" value="Warren, NJ">
-                                </div>
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" value="Your Name">
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label">Phone</label>
-                                    <input type="tel" class="form-control" id="phone" value="(555) 123-4567">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="john.smith@email.com">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" value="(555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" value="Warren, NJ">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">LinkedIn Profile</label>
+                                <input type="url" class="form-control" value="linkedin.com/in/yourprofile">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card profile-education">
+                        <div class="card__body">
+                            <h3>Education & Certifications</h3>
+                            <div class="form-group">
+                                <label class="form-label">MBA</label>
+                                <input type="text" class="form-control" value="MBA, Babson University">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Bachelor's Degree</label>
+                                <input type="text" class="form-control" value="Bachelor's Degree">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Certifications</label>
+                                <div class="cert-tags">
+                                    <span class="cert-tag">Series 7</span>
+                                    <span class="cert-tag">Series 66</span>
+                                    <button class="btn btn--sm btn--outline">Add Certification</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Technical Skills</h3>
-                        </div>
-                        <div class="card__body">
-                            <div class="skills-grid">
-                                <div class="skill-category">
-                                    <h4>Programming</h4>
-                                    <div class="skill-tags">
-                                        <span class="skill-tag">Python</span>
-                                        <span class="skill-tag">C++</span>
-                                        <span class="skill-tag">R</span>
-                                        <span class="skill-tag">SQL</span>
-                                        <span class="skill-tag">MATLAB</span>
-                                    </div>
-                                </div>
-                                <div class="skill-category">
-                                    <h4>Financial</h4>
-                                    <div class="skill-tags">
-                                        <span class="skill-tag">Bloomberg Terminal</span>
-                                        <span class="skill-tag">Trading Technologies</span>
-                                        <span class="skill-tag">Portfolio Management</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="btn btn--primary">Update Profile</button>
                 </div>
-            </div>
-        </section>
 
-        <!-- New Application Section -->
-        <section id="new-application" class="section">
-            <div class="container">
-                <h1>New Application</h1>
-                
-                <div class="application-wizard">
-                    <div class="wizard-steps">
-                        <div class="step active" data-step="1">1. Select Role</div>
-                        <div class="step" data-step="2">2. Job Details</div>
-                        <div class="step" data-step="3">3. Generate Resume</div>
-                        <div class="step" data-step="4">4. Cover Letter</div>
-                        <div class="step" data-step="5">5. Review & Submit</div>
-                    </div>
-
-                    <!-- Step 1: Role Selection -->
-                    <div class="wizard-content" id="step-1">
-                        <h2>Select Target Role</h2>
-                        <div class="role-cards">
-                            <div class="role-card" data-role="quantAnalyst">
-                                <h3>Quantitative Analyst</h3>
-                                <div class="role-salary">$150,000 - $300,000</div>
-                                <p>Develop mathematical models and algorithms for trading strategies and risk management</p>
-                                <div class="role-skills">
-                                    <span class="skill-tag">Statistical Modeling</span>
-                                    <span class="skill-tag">Python/R</span>
-                                    <span class="skill-tag">Risk Management</span>
-                                </div>
-                            </div>
-                            <div class="role-card" data-role="algoTrader">
-                                <h3>Algorithmic Trading Developer</h3>
-                                <div class="role-salary">$130,000 - $250,000</div>
-                                <p>Build high-performance trading systems and implement algorithmic strategies</p>
-                                <div class="role-skills">
+                <div class="card skills-section">
+                    <div class="card__body">
+                        <h3>Skills Inventory</h3>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h4>Technical Skills</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Python</span>
                                     <span class="skill-tag">C++</span>
-                                    <span class="skill-tag">Low Latency</span>
-                                    <span class="skill-tag">FIX Protocol</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">Machine Learning</span>
+                                    <span class="skill-tag">Statistical Analysis</span>
                                 </div>
                             </div>
-                            <div class="role-card" data-role="productManager">
-                                <h3>WealthTech Product Manager</h3>
-                                <div class="role-salary">$140,000 - $250,000</div>
-                                <p>Lead product development for wealth management technology platforms</p>
-                                <div class="role-skills">
-                                    <span class="skill-tag">Product Strategy</span>
-                                    <span class="skill-tag">UX Design</span>
-                                    <span class="skill-tag">Agile</span>
+                            <div class="skill-category">
+                                <h4>Financial Skills</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Quantitative Analysis</span>
+                                    <span class="skill-tag">Trading</span>
+                                    <span class="skill-tag">Portfolio Management</span>
+                                    <span class="skill-tag">Risk Management</span>
+                                    <span class="skill-tag">Financial Modeling</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Job Details -->
-                    <div class="wizard-content hidden" id="step-2">
-                        <h2>Job Application Details</h2>
-                        <div class="card">
-                            <div class="card__body">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Company Name</label>
-                                        <input type="text" class="form-control" id="companyName" placeholder="e.g., Goldman Sachs">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Position Title</label>
-                                        <input type="text" class="form-control" id="positionTitle" placeholder="e.g., Senior Quantitative Analyst">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Job Description</label>
-                                    <textarea class="form-control job-description" id="jobDescription" rows="6" placeholder="Paste the job description here..."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Hiring Manager (if known)</label>
-                                    <input type="text" class="form-control" id="hiringManager" placeholder="e.g., Sarah Chen">
+                            <div class="skill-category">
+                                <h4>Domain Expertise</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Wealth Management</span>
+                                    <span class="skill-tag">Investment Banking</span>
+                                    <span class="skill-tag">Fintech</span>
+                                    <span class="skill-tag">Trading Systems</span>
                                 </div>
                             </div>
-                        </div>
-                        <button class="btn btn--primary" onclick="proceedToStep(3)">Continue to Resume</button>
-                    </div>
-
-                    <!-- Step 3: Resume Generation -->
-                    <div class="wizard-content hidden" id="step-3">
-                        <h2>Generated Resume</h2>
-                        <div class="resume-container">
-                            <div class="resume-preview card">
-                                <div class="card__body">
-                                    <div id="resumeContent"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resume-actions">
-                            <button class="btn btn--secondary" onclick="regenerateResume()">Regenerate</button>
-                            <button class="btn btn--primary" onclick="proceedToStep(4)">Continue to Cover Letter</button>
-                        </div>
-                    </div>
-
-                    <!-- Step 4: Cover Letter -->
-                    <div class="wizard-content hidden" id="step-4">
-                        <h2>Generated Cover Letter</h2>
-                        <div class="cover-letter-container">
-                            <div class="cover-letter-preview card">
-                                <div class="card__body">
-                                    <div id="coverLetterContent"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cover-letter-actions">
-                            <button class="btn btn--secondary" onclick="regenerateCoverLetter()">Regenerate</button>
-                            <button class="btn btn--primary" onclick="proceedToStep(5)">Review & Submit</button>
-                        </div>
-                    </div>
-
-                    <!-- Step 5: Review -->
-                    <div class="wizard-content hidden" id="step-5">
-                        <h2>Review Application</h2>
-                        <div class="application-summary card">
-                            <div class="card__body">
-                                <h3>Application Summary</h3>
-                                <div class="summary-item">
-                                    <strong>Company:</strong> <span id="summaryCompany"></span>
-                                </div>
-                                <div class="summary-item">
-                                    <strong>Position:</strong> <span id="summaryPosition"></span>
-                                </div>
-                                <div class="summary-item">
-                                    <strong>Role Type:</strong> <span id="summaryRole"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="submit-actions">
-                            <button class="btn btn--outline" onclick="downloadDocuments()">Download Documents</button>
-                            <button class="btn btn--primary" onclick="submitApplication()">Submit Application</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Applications Section -->
-        <section id="applications" class="section">
-            <div class="container">
-                <h1>Application Tracker</h1>
+            <!-- Resume Builder Section -->
+            <section id="resume" class="content-section">
+                <div class="section-header">
+                    <h1>Resume Builder</h1>
+                    <p>Create and optimize role-specific resumes</p>
+                </div>
                 
-                <div class="applications-table">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Company</th>
-                                <th>Position</th>
-                                <th>Status</th>
-                                <th>Applied</th>
-                                <th>Priority</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="applicationsTableBody">
-                            <!-- Populated by JavaScript -->
-                        </tbody>
-                    </table>
+                <div class="resume-builder-grid">
+                    <div class="card template-selector">
+                        <div class="card__body">
+                            <h3>Resume Templates</h3>
+                            <div class="template-options">
+                                <div class="template-option active">
+                                    <h4>Quantitative Analyst</h4>
+                                    <p>Optimized for quant roles with mathematical focus</p>
+                                </div>
+                                <div class="template-option">
+                                    <h4>Algorithmic Trading Developer</h4>
+                                    <p>Technical template for trading system development</p>
+                                </div>
+                                <div class="template-option">
+                                    <h4>WealthTech Product Manager</h4>
+                                    <p>Product-focused template for fintech leadership</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card resume-preview">
+                        <div class="card__body">
+                            <h3>Resume Preview</h3>
+                            <div class="resume-content">
+                                <div class="resume-header">
+                                    <h2>Your Name</h2>
+                                    <p>Quantitative Analyst | Wealth Management Professional</p>
+                                </div>
+                                <div class="resume-section">
+                                    <h3>Experience</h3>
+                                    <div class="experience-item">
+                                        <h4>Wealth Management Advisor</h4>
+                                        <p>B. Riley Wealth Management • Current</p>
+                                    </div>
+                                    <div class="experience-item">
+                                        <h4>Software Engineer</h4>
+                                        <p>PayPal • Previous</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="resume-actions">
+                                <button class="btn btn--primary">Download PDF</button>
+                                <button class="btn btn--secondary">Export Word</button>
+                                <button class="btn btn--outline">ATS Version</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Analytics Section -->
-        <section id="analytics" class="section">
-            <div class="container">
-                <h1>Analytics Dashboard</h1>
+            <!-- Job Targeting Section -->
+            <section id="targeting" class="content-section">
+                <div class="section-header">
+                    <h1>Job Targeting System</h1>
+                    <p>Intelligent job matching and targeting configuration</p>
+                </div>
+                
+                <div class="targeting-grid">
+                    <div class="card target-roles">
+                        <div class="card__body">
+                            <h3>Target Roles</h3>
+                            <div class="role-list">
+                                <div class="role-item priority-high">
+                                    <div class="role-info">
+                                        <h4>Quantitative Analyst</h4>
+                                        <p>$150,000 - $300,000 • NY, NJ, Remote</p>
+                                    </div>
+                                    <span class="priority-badge high">High</span>
+                                </div>
+                                <div class="role-item priority-high">
+                                    <div class="role-info">
+                                        <h4>Algorithmic Trading Developer</h4>
+                                        <p>$130,000 - $250,000 • NY, Chicago, Remote</p>
+                                    </div>
+                                    <span class="priority-badge high">High</span>
+                                </div>
+                                <div class="role-item priority-medium">
+                                    <div class="role-info">
+                                        <h4>WealthTech Product Manager</h4>
+                                        <p>$140,000 - $250,000 • NY, SF, Remote</p>
+                                    </div>
+                                    <span class="priority-badge medium">Medium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card search-filters">
+                        <div class="card__body">
+                            <h3>Search Filters</h3>
+                            <div class="form-group">
+                                <label class="form-label">Minimum Salary</label>
+                                <input type="number" class="form-control" value="120000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Company Size</label>
+                                <select class="form-control">
+                                    <option>50+ employees</option>
+                                    <option>100+ employees</option>
+                                    <option>500+ employees</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Experience Match</label>
+                                <input type="range" class="form-control" min="0" max="100" value="80">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Automation Engine Section -->
+            <section id="automation" class="content-section">
+                <div class="section-header">
+                    <h1>Automation Engine</h1>
+                    <p>Configure auto-apply rules and scheduling</p>
+                </div>
+                
+                <div class="automation-grid">
+                    <div class="card automation-config">
+                        <div class="card__body">
+                            <h3>Automation Settings</h3>
+                            <div class="form-group">
+                                <label class="form-label">Daily Application Limit</label>
+                                <input type="number" class="form-control" value="15">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Weekly Application Limit</label>
+                                <input type="number" class="form-control" value="75">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Active Platforms</label>
+                                <div class="platform-checkboxes">
+                                    <label><input type="checkbox" checked> LinkedIn</label>
+                                    <label><input type="checkbox" checked> Indeed</label>
+                                    <label><input type="checkbox" checked> Glassdoor</label>
+                                </div>
+                            </div>
+                            <div class="automation-controls">
+                                <button class="btn btn--primary">Start Automation</button>
+                                <button class="btn btn--secondary">Pause</button>
+                                <button class="btn btn--outline">Test Run</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card automation-status">
+                        <div class="card__body">
+                            <h3>Automation Status</h3>
+                            <div class="status-indicator">
+                                <div class="status-light active"></div>
+                                <span>Active - Running</span>
+                            </div>
+                            <div class="automation-stats">
+                                <div class="stat-item">
+                                    <span>Applications Today</span>
+                                    <span>8 / 15</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>This Week</span>
+                                    <span>34 / 75</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Success Rate</span>
+                                    <span>87%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Application Tracking Section -->
+            <section id="tracking" class="content-section">
+                <div class="section-header">
+                    <h1>Application Tracking</h1>
+                    <p>Monitor and manage your job applications</p>
+                </div>
+                
+                <div class="tracking-controls">
+                    <div class="filter-controls">
+                        <select class="form-control">
+                            <option>All Platforms</option>
+                            <option>LinkedIn</option>
+                            <option>Indeed</option>
+                            <option>Glassdoor</option>
+                        </select>
+                        <select class="form-control">
+                            <option>All Statuses</option>
+                            <option>Applied</option>
+                            <option>Phone Screen</option>
+                            <option>Interview</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="card applications-table">
+                    <div class="card__body">
+                        <h3>Application History</h3>
+                        <div class="table-container">
+                            <table class="applications-table">
+                                <thead>
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>Company</th>
+                                        <th>Platform</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Match</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Senior Quantitative Analyst</td>
+                                        <td>Goldman Sachs</td>
+                                        <td>LinkedIn</td>
+                                        <td><span class="status status--info">Applied</span></td>
+                                        <td>2025-06-20</td>
+                                        <td>94%</td>
+                                        <td><button class="btn btn--sm btn--outline">Follow Up</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trading Systems Developer</td>
+                                        <td>Two Sigma</td>
+                                        <td>Indeed</td>
+                                        <td><span class="status status--warning">Phone Screen</span></td>
+                                        <td>2025-06-18</td>
+                                        <td>91%</td>
+                                        <td><button class="btn btn--sm btn--outline">Schedule</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product Manager - WealthTech</td>
+                                        <td>Charles Schwab</td>
+                                        <td>Glassdoor</td>
+                                        <td><span class="status status--success">Interview</span></td>
+                                        <td>2025-06-15</td>
+                                        <td>88%</td>
+                                        <td><button class="btn btn--sm btn--outline">Prepare</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <h1>Analytics & Reporting</h1>
+                    <p>Performance insights and trend analysis</p>
+                </div>
                 
                 <div class="analytics-grid">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Application Success Metrics</h3>
-                        </div>
+                    <div class="card chart-card">
                         <div class="card__body">
-                            <div class="metric">
-                                <div class="metric-label">Response Rate</div>
-                                <div class="metric-value">20%</div>
-                                <div class="metric-trend status--success">+5% vs last month</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-label">Interview Conversion</div>
-                                <div class="metric-value">60%</div>
-                                <div class="metric-trend status--success">Above average</div>
+                            <h3>Applications by Platform</h3>
+                            <div class="chart-container">
+                                <canvas id="platformChart"></canvas>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Industry Trends</h3>
-                        </div>
+                    
+                    <div class="card chart-card">
                         <div class="card__body">
-                            <div class="trend-item">
-                                <div class="trend-role">Quantitative Analyst</div>
-                                <div class="trend-growth status--success">+61% demand growth</div>
-                                <div class="trend-salary">Avg: $225,000</div>
+                            <h3>Response Rates by Role</h3>
+                            <div class="chart-container">
+                                <canvas id="responseChart"></canvas>
                             </div>
-                            <div class="trend-item">
-                                <div class="trend-role">Algo Trading Developer</div>
-                                <div class="trend-growth status--success">+45% demand growth</div>
-                                <div class="trend-salary">Avg: $190,000</div>
-                            </div>
-                            <div class="trend-item">
-                                <div class="trend-role">WealthTech Product Manager</div>
-                                <div class="trend-growth status--success">+38% demand growth</div>
-                                <div class="trend-salary">Avg: $195,000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card chart-card full-width">
+                        <div class="card__body">
+                            <h3>Monthly Application Trends</h3>
+                            <div class="chart-container">
+                                <canvas id="trendsChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
+            <!-- Chrome Extension Section -->
+            <section id="extension" class="content-section">
+                <div class="section-header">
+                    <h1>Chrome Extension Integration</h1>
+                    <p>Seamless browser-based job application features</p>
+                </div>
+                
+                <div class="extension-grid">
+                    <div class="card extension-status">
+                        <div class="card__body">
+                            <h3>Extension Status</h3>
+                            <div class="extension-info">
+                                <div class="status-indicator">
+                                    <div class="status-light active"></div>
+                                    <span>Extension Installed & Active</span>
+                                </div>
+                                <p>Version 2.1.0 - Last updated: June 20, 2025</p>
+                            </div>
+                            <div class="extension-features">
+                                <h4>Available Features:</h4>
+                                <ul>
+                                    <li>One-click application on job sites</li>
+                                    <li>Auto-fill job application forms</li>
+                                    <li>Real-time job analysis and scoring</li>
+                                    <li>Instant profile matching</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card extension-settings">
+                        <div class="card__body">
+                            <h3>Extension Settings</h3>
+                            <div class="form-group">
+                                <label class="form-label">Auto-fill Behavior</label>
+                                <select class="form-control">
+                                    <option>Auto-fill and submit</option>
+                                    <option>Auto-fill only</option>
+                                    <option>Manual confirmation</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Notification Settings</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" checked> Show match scores</label>
+                                    <label><input type="checkbox" checked> Application confirmations</label>
+                                    <label><input type="checkbox"> Daily summaries</label>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary">Update Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
     <script src="app.js"></script>
 </body>
 </html>

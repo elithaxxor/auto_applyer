@@ -1,7 +1,7 @@
 # WealthTech Product Manager Resume Template
 
 **[Your Name]**  
- [Phone] | [Email] | LinkedIn: [Profile URL]
+Warren, NJ | [Phone] | [Email] | LinkedIn: [Profile URL]
 
 ---
 

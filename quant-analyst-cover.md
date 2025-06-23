@@ -1,7 +1,7 @@
 # Quantitative Analyst Cover Letter Template
 
 **[Your Name]**  
-Warren, NJ [Zip Code]  
+Zip Code]  
 [Phone Number]  
 [Email Address]  
 [Date]

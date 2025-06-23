@@ -5,7 +5,7 @@
 JobFlow Pro is a web-based dashboard that automates and tracks finance and technology job applications. It provides an interactive professional toolkit with a dashboard, resume templates, job tracker, analytics, market insights, and an "Auto-Apply" feature to streamline the job search process.
 This project is an advanced job application automation system designed to streamline and automate the process of applying to fintech job roles on platforms such as LinkedIn, Indeed, and Glassdoor. It includes intelligent auto-fill capabilities for any website and role-specific resume optimization.
 
-Your **Advanced Job Application Automation System** is an impressive and comprehensive solution tailored specifically for fintech professionals. Below is a structured breakdown of its key components, innovations, and strategic advantages, along with potential enhancements and ethical considerations:
+The **Advanced Job Application Automation System** is an impressive and comprehensive solution tailored specifically for fintech professionals. Below is a structured breakdown of its key components, innovations, and strategic advantages, along with potential enhancements and ethical considerations:
 
 ---
 
@@ -178,8 +178,7 @@ MIT License
 ---
 
 ## Author
-
-Adel Alaali
+nobody 
 
 ---
 
@@ -273,7 +272,7 @@ This will launch a local server and open JobFlow Pro in your browser.
 
 - Ensure you have an active internet connection.
 - Run the setup script as shown above.
-- The main program (`main.py`) will execute and start the job application automation process.
+- The main program (`app.js`) will execute and start the job application automation process.
 
 ## Troubleshooting
 

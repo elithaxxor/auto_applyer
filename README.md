@@ -1,6 +1,16 @@
 
 
 # JobFlow Pro: Automated Finance & Tech Job Applications
+## CLI and API Usage
+
+Install dependencies with Poetry and run commands:
+
+```bash
+poetry install
+poetry run python main.py search --help
+poetry run uvicorn api.server:app --reload
+```
+
 
 JobFlow Pro is a web-based dashboard that automates and tracks finance and technology job applications. It provides an interactive professional toolkit with a dashboard, resume templates, job tracker, analytics, market insights, and an "Auto-Apply" feature to streamline the job search process.
 This project is an advanced job application automation system designed to streamline and automate the process of applying to fintech job roles on platforms such as LinkedIn, Indeed, and Glassdoor. It includes intelligent auto-fill capabilities for any website and role-specific resume optimization.
@@ -287,4 +297,9 @@ Contributions are welcome! Please fork the repository and submit pull requests.
 ## License
 
 This project is licensed under the MIT License.
+### Docker
+Run with docker-compose:
+```bash
+docker-compose up --build
+```
 

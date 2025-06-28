@@ -49,3 +49,15 @@ def generate_cover_letter(job_desc: str, resume: str) -> str:
         return response.choices[0].message.content.strip()
     except Exception:
         return ""
+
+
+def answer_question(question: str) -> str:
+    """Ask the LLM a question and return the answer."""
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": question}],
+        )
+        return response.choices[0].message.content.strip()
+    except Exception:
+        return ""

@@ -4,7 +4,7 @@ from fastapi import FastAPI, UploadFile, File
 
 from core import tracker
 from main import providers
-from core.llm_utils import generate_cover_letter
+from core.llm_utils import generate_cover_letter, extract_keywords
 
 app = FastAPI()
 
@@ -45,6 +45,6 @@ async def history():
 @app.post("/upload-resume")
 async def upload_resume(file: UploadFile = File(...)):
     content = (await file.read()).decode()
-    # For now, just return keywords
-    keywords = generate_cover_letter(content, content)
+    # Extract keywords from the uploaded resume
+    keywords = extract_keywords(content)
     return {"keywords": keywords}

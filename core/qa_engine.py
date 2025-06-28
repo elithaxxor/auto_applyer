@@ -31,7 +31,7 @@ class QAEngine:
         result = self.lookup(question)
         if result:
             return result
-        generated = llm_utils.generate_cover_letter(question, "")
+        generated = llm_utils.answer_question(question)
         confidence = 0.6
         if generated:
             confidence = 0.8

@@ -28,8 +28,8 @@ class IndeedProvider(BaseProvider):
         return postings
 
     def apply_to_job(self, job_id: str, resume: str, cover_letter: str) -> bool:
-        # Stub: requests-based application not implemented
-        return True
+        # Indeed does not expose an API for applying automatically.
+        return False
 
     def supports_easy_apply(self) -> bool:
         return False
